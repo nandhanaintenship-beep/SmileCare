@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treatment History | Smile Care</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef8fc;
+}
+
+/* Header */
+
+header{
+background:linear-gradient(to right,#0097a7,#00bcd4);
+color:white;
+padding:18px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+}
+
+/* Heading */
+
+.heading{
+text-align:center;
+margin:30px;
+}
+
+.heading h2{
+color:#00838f;
+margin-bottom:10px;
+}
+
+.heading p{
+color:#555;
+}
+
+/* Table */
+
+.table-box{
+width:90%;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+overflow-x:auto;
+animation:fade 1s;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#0097a7;
+color:white;
+padding:15px;
+}
+
+td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+background:#f1fbfd;
+}
+
+.completed{
+color:green;
+font-weight:bold;
+}
+
+.ongoing{
+color:orange;
+font-weight:bold;
+}
+
+/* Button */
+
+.button{
+text-align:center;
+margin:30px;
+}
+
+button{
+padding:12px 25px;
+background:#0097a7;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#006064;
+}
+
+/* Footer */
+
+footer{
+margin-top:30px;
+background:#0097a7;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+/* Animation */
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+🏥 Smile Care Dental Clinic
+
+</header>
+
+<div class="heading">
+
+<h2>🦷 Treatment History</h2>
+
+<p>View your previous dental treatments.</p>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+
+<th>Treatment</th>
+
+<th>Dentist</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>Dental Check-up</td>
+
+<td>Dr. Rahul Menon</td>
+
+<td>10 July 2026</td>
+
+<td class="completed">Completed</td>
+
+</tr>
+
+<tr>
+
+<td>Teeth Cleaning</td>
+
+<td>Dr. Anjali Nair</td>
+
+<td>25 July 2026</td>
+
+<td class="completed">Completed</td>
+
+</tr>
+
+<tr>
+
+<td>Root Canal</td>
+
+<td>Dr. Meera Joseph</td>
+
+<td>15 August 2026</td>
+
+<td class="ongoing">Ongoing</td>
+
+</tr>
+
+<tr>
+
+<td>Braces Consultation</td>
+
+<td>Dr. Rahul Menon</td>
+
+<td>20 August 2026</td>
+
+<td class="completed">Completed</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="button">
+
+<button onclick="goBack()">
+
+← Back to Dashboard
+
+</button>
+
+</div>
+
+<footer>
+
+© 2026 Smile Care Dental Clinic
+
+</footer>
+
+<script>
+
+function goBack(){
+
+window.location.href="patient_dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>

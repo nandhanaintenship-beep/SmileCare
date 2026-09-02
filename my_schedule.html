@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Schedule | Smile Care</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef8fc;
+}
+
+/* Header */
+
+header{
+background:#0097a7;
+color:white;
+text-align:center;
+padding:20px;
+font-size:28px;
+font-weight:bold;
+animation:fade 1s;
+}
+
+/* Container */
+
+.container{
+width:90%;
+margin:30px auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 15px lightgray;
+animation:fade 1.2s;
+}
+
+.container h2{
+color:#0097a7;
+margin-bottom:10px;
+}
+
+.date{
+margin-bottom:20px;
+color:#555;
+font-size:17px;
+}
+
+/* Search */
+
+.search-box{
+margin-bottom:20px;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+outline:none;
+}
+
+.search-box input:focus{
+border:1px solid #0097a7;
+}
+
+/* Table */
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table th{
+background:#0097a7;
+color:white;
+padding:12px;
+}
+
+table td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+background:#e8f9fc;
+}
+
+/* Button */
+
+.btn{
+margin-top:25px;
+padding:12px 25px;
+background:#0097a7;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+}
+
+.btn:hover{
+background:#006064;
+transform:scale(1.05);
+}
+
+/* Animation */
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+Smile Care Dental Clinic
+
+</header>
+
+<div class="container">
+
+<h2>⏰ My Schedule</h2>
+
+<p class="date" id="todayDate"></p>
+
+<div class="search-box">
+
+<input type="text" id="search" placeholder="Search schedule...">
+
+</div>
+
+<table id="scheduleTable">
+
+<tr>
+
+<th>Time</th>
+<th>Activity</th>
+<th>Patient</th>
+<th>Room</th>
+
+</tr>
+
+<tr>
+<td>09:00 AM</td>
+<td>Dental Check-up</td>
+<td>Anu</td>
+<td>Room 1</td>
+</tr>
+
+<tr>
+<td>10:00 AM</td>
+<td>Root Canal</td>
+<td>Rahul</td>
+<td>Room 2</td>
+</tr>
+
+<tr>
+<td>11:30 AM</td>
+<td>Teeth Cleaning</td>
+<td>Akhil</td>
+<td>Room 1</td>
+</tr>
+
+<tr>
+<td>01:00 PM</td>
+<td>Lunch Break</td>
+<td>-</td>
+<td>Staff Room</td>
+</tr>
+
+<tr>
+<td>02:00 PM</td>
+<td>Braces Consultation</td>
+<td>Megha</td>
+<td>Room 3</td>
+</tr>
+
+<tr>
+<td>03:30 PM</td>
+<td>Dental Filling</td>
+<td>Sneha</td>
+<td>Room 2</td>
+</tr>
+
+<tr>
+<td>05:00 PM</td>
+<td>Patient Follow-up</td>
+<td>Arjun</td>
+<td>Room 1</td>
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="goBack()">⬅ Back to Dashboard</button>
+
+</div>
+
+<footer>
+
+<p>© 2026 Smile Care Dental Clinic. All Rights Reserved.</p>
+
+</footer>
+
+<style>
+
+footer{
+margin-top:30px;
+background:#0097a7;
+color:white;
+text-align:center;
+padding:15px;
+font-size:16px;
+}
+
+</style>
+
+<script>
+
+/* Show Current Date */
+
+const today = new Date();
+
+const options = {
+weekday:"long",
+year:"numeric",
+month:"long",
+day:"numeric"
+};
+
+document.getElementById("todayDate").innerHTML =
+"📅 " + today.toLocaleDateString("en-US", options);
+
+/* Search Schedule */
+
+document.getElementById("search").addEventListener("keyup", function(){
+
+let filter = this.value.toUpperCase();
+
+let table = document.getElementById("scheduleTable");
+
+let tr = table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let td = tr[i].getElementsByTagName("td")[1];
+
+if(td){
+
+let txtValue = td.textContent || td.innerText;
+
+if(txtValue.toUpperCase().indexOf(filter) > -1){
+
+tr[i].style.display="";
+
+}
+else{
+
+tr[i].style.display="none";
+
+}
+
+}
+
+}
+
+});
+
+/* Back Button */
+
+function goBack(){
+
+window.location.href="dentist_dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Smile Care</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background-image:url("backimage.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+/* Navigation */
+
+nav{
+    background:#0097a7;
+    padding:15px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-size:18px;
+}
+
+nav a:hover{
+    color:yellow;
+}
+
+/* About Section */
+
+.about{
+    width:85%;
+    margin:60px auto;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    gap:40px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+    animation:fade 1.5s;
+}
+
+/* Image */
+
+.about img{
+    width:350px;
+    height:280px;
+    object-fit:cover;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:0.4s;
+}
+
+.about img:hover{
+    transform:scale(1.05);
+}
+
+/* Text */
+
+.about-text{
+    flex:1;
+}
+
+.about-text h1{
+    color:#0097a7;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.about-text p{
+    font-size:18px;
+    line-height:1.8;
+    color:#444;
+    text-align:justify;
+}
+
+/* Animation */
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.about{
+flex-direction:column;
+text-align:center;
+}
+
+.about img{
+width:100%;
+height:auto;
+}
+
+.about-text p{
+text-align:center;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="doctor.html">Doctors</a>
+<a href="contact.html">Contact</a>
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+<a href="appointment.html">Appointment</a>
+
+</nav>
+
+<div class="about">
+
+<img src="jpg teeth.jpg" alt="Smile Care Dental Clinic">
+
+<div class="about-text">
+
+<h1>About Smile Care</h1>
+
+<p>
+Smile Care Dental Clinic is dedicated to providing high-quality dental care in a safe, friendly, and comfortable environment. Our experienced dentists use modern technology to offer services such as dental check-ups, teeth cleaning, root canal treatment, braces, dental implants, cosmetic dentistry, and preventive oral care. We believe every patient deserves a healthy, confident smile, and we strive to deliver personalized treatment with compassion and professionalism.
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

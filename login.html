@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smile Care Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4fc3f7,#0288d1);
+    overflow:hidden;
+}
+
+/* Floating Circles */
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    animation:float 6s infinite;
+}
+
+.circle1{
+    width:140px;
+    height:140px;
+    top:50px;
+    left:80px;
+}
+
+.circle2{
+    width:100px;
+    height:100px;
+    bottom:60px;
+    right:120px;
+}
+
+.circle3{
+    width:70px;
+    height:70px;
+    top:250px;
+    right:250px;
+}
+
+
+/* Login Box */
+
+.login-box{
+
+    width:380px;
+    background:rgba(255,255,255,0.20);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    animation:fade 1.2s;
+
+}
+
+.login-box h1{
+
+    color:white;
+    margin-bottom:8px;
+
+}
+
+.login-box p{
+
+    color:white;
+    margin-bottom:20px;
+
+}
+
+
+/* Input Fields */
+
+select,
+input{
+
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    font-size:16px;
+
+}
+
+
+/* Password */
+
+.password{
+
+    position:relative;
+
+}
+
+.password input{
+
+    padding-right:45px;
+
+}
+
+.password span{
+
+    position:absolute;
+    right:15px;
+    top:22px;
+    cursor:pointer;
+    font-size:18px;
+
+}
+
+
+/* Button */
+
+button{
+
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#0097a7;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#006064;
+    transform:scale(1.03);
+
+}
+
+
+/* Register */
+
+.register{
+
+    margin-top:20px;
+    color:white;
+
+}
+
+.register a{
+
+    color:yellow;
+    text-decoration:none;
+
+}
+
+.register a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* Animations */
+
+@keyframes fade{
+
+from{
+
+    opacity:0;
+    transform:translateY(-40px);
+
+}
+
+to{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
+
+}
+
+@keyframes float{
+
+0%{
+
+    transform:translateY(0);
+
+}
+
+50%{
+
+    transform:translateY(-20px);
+
+}
+
+100%{
+
+    transform:translateY(0);
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- Floating Circles -->
+
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+
+
+<!-- Login Box -->
+
+<div class="login-box">
+
+    <h1>Smile Care</h1>
+
+    <p>Login to Your Account</p>
+
+
+    <!-- Login Form -->
+
+    <form action="login.php" method="POST">
+
+
+        <!-- User Type -->
+
+        <select name="userType" id="userType" required>
+
+            <option value="">Select User Type</option>
+
+            <option value="patient">Patient</option>
+
+            <option value="dentist">Dentist</option>
+
+        </select>
+
+
+        <!-- Email -->
+
+        <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter Email"
+            required
+        >
+
+
+        <!-- Password -->
+
+        <div class="password">
+
+            <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter Password"
+                required
+            >
+
+            <span onclick="togglePassword()">👁️</span>
+
+        </div>
+
+
+        <!-- Login Button -->
+
+        <button type="submit">
+            Login
+        </button>
+
+
+    </form>
+
+
+    <!-- Register -->
+
+    <div class="register">
+
+        Don't have an account?
+
+        <a href="register.html">
+            Register
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* Show / Hide Password */
+
+function togglePassword(){
+
+    let password = document.getElementById("password");
+
+    if(password.type == "password"){
+
+        password.type = "text";
+
+    }
+    else{
+
+        password.type = "password";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

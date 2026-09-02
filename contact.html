@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Smile Care</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background-image:url("background.image.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+/* Navigation Bar */
+
+nav{
+    background:#0097a7;
+    padding:15px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-size:18px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:yellow;
+}
+
+/* Heading */
+
+.heading{
+    text-align:center;
+    margin-top:40px;
+    animation:fadeDown 1s;
+}
+
+.heading h1{
+    color:#00838f;
+    font-size:38px;
+}
+
+.heading p{
+    margin-top:10px;
+    color:#555;
+}
+
+/* Contact Cards */
+
+.container{
+    width:90%;
+    margin:40px auto;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:260px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    transition:.4s;
+    animation:fadeUp 1.2s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h2{
+    color:#0097a7;
+    margin-bottom:15px;
+}
+
+.icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#555;
+    line-height:1.8;
+}
+
+/* Footer */
+
+footer{
+    margin-top:40px;
+    background:#0097a7;
+    color:white;
+    text-align:center;
+    padding:18px;
+}
+
+/* Animations */
+
+@keyframes fadeDown{
+
+from{
+opacity:0;
+transform:translateY(-40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="doctor.html">Doctors</a>
+<a href="contact.html">Contact</a>
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+<a href="appointment.html">Appointment</a>
+
+</nav>
+
+<div class="heading">
+
+<h1>Contact Us</h1>
+
+<p>We are always here to help you with your dental care.</p>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="icon">📍</div>
+
+<h2>Address</h2>
+
+<p>
+Smile Care Dental Clinic<br>
+MG Road,<br>
+Kochi, Kerala - 682001
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">📞</div>
+
+<h2>Phone</h2>
+
+<p>
++91 98765 43210<br>
++91 91234 56789
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">📧</div>
+
+<h2>Email</h2>
+
+<p>
+smilecare@gmail.com<br>
+support@smilecare.com
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🕒</div>
+
+<h2>Working Hours</h2>
+
+<p>
+Monday - Saturday<br>
+9:00 AM - 6:00 PM
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Smile Care Dental Clinic | All Rights Reserved
+
+</footer>

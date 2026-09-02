@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register | Smile Care</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4fc3f7,#0288d1);
+}
+
+.register-box{
+    width:400px;
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    animation:fadeIn 1s;
+}
+
+.register-box h1{
+    color:white;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.input-box{
+    margin-bottom:15px;
+}
+
+.input-box input,
+.input-box select{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    font-size:15px;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:45px;
+}
+
+.password-box span{
+    position:absolute;
+    right:15px;
+    top:10px;
+    cursor:pointer;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0097a7;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#006064;
+}
+
+#message{
+    text-align:center;
+    margin-top:15px;
+    color:white;
+    font-weight:bold;
+}
+
+.login-link{
+    text-align:center;
+    margin-top:15px;
+    color:white;
+}
+
+.login-link a{
+    color:yellow;
+    text-decoration:none;
+}
+
+@keyframes fadeIn{
+
+from{
+    opacity:0;
+    transform:translateY(-30px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="register-box">
+
+<h1>Create Account</h1>
+
+<!-- Registration Form -->
+<form action="register.php" method="POST">
+
+<div class="input-box">
+
+<input
+type="text"
+id="name"
+name="name"
+placeholder="Full Name"
+required>
+
+</div>
+
+
+<div class="input-box">
+
+<input
+type="number"
+id="age"
+name="age"
+placeholder="Age"
+required>
+
+</div>
+
+
+<div class="input-box">
+
+<select id="gender" name="gender" required>
+
+<option value="">Select Gender</option>
+
+<option value="Male">Male</option>
+
+<option value="Female">Female</option>
+
+<option value="Other">Other</option>
+
+</select>
+
+</div>
+
+
+<div class="input-box">
+
+<input
+type="text"
+id="phone"
+name="phone"
+placeholder="Phone Number"
+required>
+
+</div>
+
+
+<div class="input-box">
+
+<input
+type="email"
+id="email"
+name="email"
+placeholder="Email Address"
+required>
+
+</div>
+
+
+<div class="input-box password-box">
+
+<input
+type="password"
+id="password"
+name="password"
+placeholder="Password"
+required>
+
+<span onclick="showPassword()">👁️</span>
+
+</div>
+
+
+<!-- Register Button -->
+
+<button type="submit">
+Register
+</button>
+
+</form>
+
+
+<div class="login-link">
+
+Already have an account?
+
+<a href="login.html">
+Login
+</a>
+
+</div>
+
+</div>
+
+
+<script>
+
+function showPassword(){
+
+let pass = document.getElementById("password");
+
+if(pass.type == "password"){
+
+pass.type = "text";
+
+}
+else{
+
+pass.type = "password";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

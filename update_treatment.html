@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Update Treatment | Smile Care</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef8fc;
+}
+
+header{
+background:#0097a7;
+color:white;
+text-align:center;
+padding:20px;
+font-size:28px;
+font-weight:bold;
+animation:fade 1s;
+}
+
+.container{
+width:70%;
+margin:30px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 15px lightgray;
+animation:fade 1.2s;
+}
+
+.container h2{
+text-align:center;
+color:#0097a7;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+color:#333;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+margin-top:6px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+outline:none;
+}
+
+input:focus,
+textarea:focus{
+border:1px solid #0097a7;
+}
+
+textarea{
+height:90px;
+resize:none;
+}
+
+.btn{
+margin-top:25px;
+padding:12px 25px;
+background:#0097a7;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+margin-right:10px;
+}
+
+.btn:hover{
+background:#006064;
+transform:scale(1.05);
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+Smile Care Dental Clinic
+
+</header>
+
+<div class="container">
+
+<h2>🦷 Update Treatment Record</h2>
+
+<label>Patient ID</label>
+<input type="text" id="pid" placeholder="Enter Patient ID">
+
+<label>Patient Name</label>
+<input type="text" id="pname" placeholder="Enter Patient Name">
+
+<label>Diagnosis</label>
+<input type="text" id="diagnosis" placeholder="Enter Diagnosis">
+
+<label>Treatment</label>
+<input type="text" id="treatment" placeholder="Enter Treatment">
+
+<label>Medicine</label>
+<input type="text" id="medicine" placeholder="Enter Medicine">
+
+<label>Next Visit Date</label>
+<input type="date" id="visit">
+
+<label>Notes</label>
+<textarea id="notes" placeholder="Enter additional notes"></textarea>
+
+<br>
+
+<button class="btn" onclick="updateRecord()">💾 Update Record</button>
+
+<button class="btn" onclick="goBack()">⬅ Back to Dashboard</button>
+
+</div>
+
+<footer>
+
+<p>© 2026 Smile Care Dental Clinic. All Rights Reserved.</p>
+
+</footer>
+
+<style>
+
+footer{
+margin-top:30px;
+background:#0097a7;
+color:white;
+text-align:center;
+padding:15px;
+font-size:16px;
+}
+
+</style>
+
+<script>
+
+/* Update Record */
+
+function updateRecord(){
+
+let pid=document.getElementById("pid").value;
+let pname=document.getElementById("pname").value;
+let diagnosis=document.getElementById("diagnosis").value;
+let treatment=document.getElementById("treatment").value;
+let medicine=document.getElementById("medicine").value;
+let visit=document.getElementById("visit").value;
+let notes=document.getElementById("notes").value;
+
+if(pid=="" || pname=="" || diagnosis=="" || treatment=="" || medicine=="" || visit==""){
+
+alert("Please fill in all the required fields.");
+
+}
+else{
+
+alert("Treatment record updated successfully!");
+
+document.getElementById("pid").value="";
+document.getElementById("pname").value="";
+document.getElementById("diagnosis").value="";
+document.getElementById("treatment").value="";
+document.getElementById("medicine").value="";
+document.getElementById("visit").value="";
+document.getElementById("notes").value="";
+
+}
+
+}
+
+/* Back to Dashboard */
+
+function goBack(){
+
+window.location.href="dentist_dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>
