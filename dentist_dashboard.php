@@ -252,7 +252,7 @@ if ($dentist["name"] == "Dr. Anjali Nair") {
 
 <div class="container">
 
-<div class="card" onclick="location.href='today_appointments.html'">
+<div class="card" onclick="location.href='today_appointments.php'">
 
 <h2>📅</h2>
 
@@ -263,7 +263,7 @@ if ($dentist["name"] == "Dr. Anjali Nair") {
 </div>
 
 
-<div class="card" onclick="location.href='update_treatment.html'">
+<div class="card" onclick="location.href='update_treatment.php'">
 
 <h2>👨‍⚕️</h2>
 
@@ -274,7 +274,7 @@ if ($dentist["name"] == "Dr. Anjali Nair") {
 </div>
 
 
-<div class="card" onclick="location.href='treatment_records.html'">
+<div class="card" onclick="location.href='treatment_records.php'">
 
 <h2>🦷</h2>
 
@@ -285,7 +285,7 @@ if ($dentist["name"] == "Dr. Anjali Nair") {
 </div>
 
 
-<div class="card" onclick="location.href='my_schedule.html'">
+<div class="card" onclick="location.href='my_schedule.php'">
 
 <h2>⏰</h2>
 
@@ -296,7 +296,7 @@ if ($dentist["name"] == "Dr. Anjali Nair") {
 </div>
 
 
-<div class="card" onclick="location.href='patient_list.html'">
+<div class="card" onclick="location.href='patient_list.php'">
 
 <h2>👥</h2>
 
@@ -305,7 +305,15 @@ if ($dentist["name"] == "Dr. Anjali Nair") {
 <p>View patient details</p>
 
 </div>
+<div class="card" onclick="location.href='manage_appointments.php'">
 
+<h2>📋</h2>
+
+<h3>Manage Appointments</h3>
+
+<p>Confirm, complete or cancel appointments</p>
+
+</div>
 
 <div class="card" onclick="location.href='logout.php'">
 

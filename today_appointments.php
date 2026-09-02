@@ -1,6 +1,41 @@
+<?php
+session_start();
+include "config/db.php";
+
+if (!isset($_SESSION["dentist_id"])) {
+    header("Location: login.html");
+    exit();
+}
+
+$dentist_id = $_SESSION["dentist_id"];
+
+/* Get today's appointments for logged-in dentist */
+
+$sql = "SELECT 
+            appointments.appointment_time,
+            appointments.reason,
+            appointments.status,
+            patients.name,
+            patients.phone
+        FROM appointments
+        INNER JOIN patients 
+        ON appointments.patient_id = patients.patient_id
+        WHERE appointments.dentist_id = ?
+        AND appointments.appointment_date = CURDATE()
+        ORDER BY appointments.appointment_time ASC";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $dentist_id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -105,6 +140,11 @@ color:green;
 font-weight:bold;
 }
 
+.cancelled{
+color:red;
+font-weight:bold;
+}
+
 /* Buttons */
 
 .btn{
@@ -140,6 +180,15 @@ transform:translateY(0);
 
 }
 
+footer{
+margin-top:30px;
+background:#0097a7;
+color:white;
+text-align:center;
+padding:15px;
+font-size:16px;
+}
+
 </style>
 
 </head>
@@ -152,17 +201,28 @@ Smile Care Dental Clinic
 
 </header>
 
+
 <div class="container">
 
 <h2>📅 Today's Appointments</h2>
 
-<p class="date" id="todayDate"></p>
+<p class="date">
+<?php
+echo date("l, F j, Y");
+?>
+</p>
+
 
 <div class="search-box">
 
-<input type="text" id="search" placeholder="Search patient name...">
+<input 
+type="text" 
+id="search" 
+placeholder="Search patient name..."
+>
 
 </div>
+
 
 <table id="appointmentTable">
 
@@ -176,53 +236,54 @@ Smile Care Dental Clinic
 
 </tr>
 
-<tr>
 
-<td>09:00 AM</td>
-<td>Anu</td>
-<td>Dental Check-up</td>
-<td>9876543210</td>
-<td class="pending">Pending</td>
+<?php
 
-</tr>
+if ($result->num_rows > 0) {
 
-<tr>
+    while ($row = $result->fetch_assoc()) {
 
-<td>10:30 AM</td>
-<td>Rahul</td>
-<td>Root Canal</td>
-<td>9123456780</td>
-<td class="completed">Completed</td>
+        $statusClass = strtolower($row["status"]);
 
-</tr>
+        echo "<tr>";
 
-<tr>
+        echo "<td>" . date("h:i A", strtotime($row["appointment_time"])) . "</td>";
 
-<td>11:45 AM</td>
-<td>Akhil</td>
-<td>Teeth Cleaning</td>
-<td>9988776655</td>
-<td class="pending">Pending</td>
+        echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
 
-</tr>
+        echo "<td>" . htmlspecialchars($row["reason"]) . "</td>";
 
-<tr>
+        echo "<td>" . htmlspecialchars($row["phone"]) . "</td>";
 
-<td>02:00 PM</td>
-<td>Megha</td>
-<td>Braces Consultation</td>
-<td>9876501234</td>
-<td class="pending">Pending</td>
+        echo "<td class='" . htmlspecialchars($statusClass) . "'>"
+             . htmlspecialchars($row["status"]) .
+             "</td>";
 
-</tr>
+        echo "</tr>";
+    }
+
+} else {
+
+    echo "<tr>";
+
+    echo "<td colspan='5'>No appointments scheduled for today.</td>";
+
+    echo "</tr>";
+}
+
+?>
 
 </table>
 
+
 <br>
 
-<button class="btn" onclick="goBack()">⬅ Back to Dashboard</button>
+<button class="btn" onclick="goBack()">
+⬅ Back to Dashboard
+</button>
 
 </div>
+
 
 <footer>
 
@@ -230,34 +291,8 @@ Smile Care Dental Clinic
 
 </footer>
 
-<style>
-
-footer{
-margin-top:30px;
-background:#0097a7;
-color:white;
-text-align:center;
-padding:15px;
-font-size:16px;
-}
-
-</style>
 
 <script>
-
-/* Show Today's Date */
-
-const today = new Date();
-
-const options = {
-weekday:'long',
-year:'numeric',
-month:'long',
-day:'numeric'
-};
-
-document.getElementById("todayDate").innerHTML =
-today.toLocaleDateString('en-US', options);
 
 /* Search Function */
 
@@ -269,7 +304,7 @@ let table = document.getElementById("appointmentTable");
 
 let tr = table.getElementsByTagName("tr");
 
-for(let i=1; i<tr.length; i++){
+for(let i = 1; i < tr.length; i++){
 
 let td = tr[i].getElementsByTagName("td")[1];
 
@@ -294,15 +329,24 @@ tr[i].style.display="none";
 
 });
 
+
 /* Back Button */
 
 function goBack(){
 
-window.location.href="dentist_dashboard.html";
+window.location.href="dentist_dashboard.php";
 
 }
 
 </script>
 
 </body>
+
 </html>
+
+<?php
+
+$stmt->close();
+$conn->close();
+
+?>

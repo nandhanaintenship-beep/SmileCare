@@ -237,7 +237,7 @@ $conn->close();
 
     <div class="cards">
 
-        <a href="appointment.html" class="card">
+        <a href="appointment.php" class="card">
 
             <div class="icon">📅</div>
 
@@ -250,7 +250,7 @@ $conn->close();
         </a>
 
 
-        <a href="myappointments.html" class="card">
+        <a href="myappointments.php" class="card">
 
             <div class="icon">🗓️</div>
 
@@ -263,7 +263,7 @@ $conn->close();
         </a>
 
 
-        <a href="treatment_history.html" class="card">
+        <a href="treatment_history.php" class="card">
 
             <div class="icon">🦷</div>
 
@@ -276,7 +276,7 @@ $conn->close();
         </a>
 
 
-        <a href="edit_profile.html" class="card">
+        <a href="edit_profile.php" class="card">
 
             <div class="icon">✏️</div>
 
@@ -289,7 +289,7 @@ $conn->close();
         </a>
 
 
-        <a href="change_password.html" class="card">
+        <a href="change_password.php" class="card">
 
             <div class="icon">🔐</div>
 

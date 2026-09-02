@@ -1,8 +1,41 @@
+<?php
+session_start();
+include "config/db.php";
+
+if (!isset($_SESSION["patient_id"])) {
+    header("Location: login.html");
+    exit();
+}
+
+$patient_id = $_SESSION["patient_id"];
+
+$sql = "SELECT
+            treatments.treatment_name,
+            treatments.treatment_date,
+            treatments.description,
+            treatments.cost,
+            dentists.name AS dentist_name
+        FROM treatments
+        INNER JOIN dentists
+        ON treatments.dentist_id = dentists.dentist_id
+        WHERE treatments.patient_id = ?
+        ORDER BY treatments.treatment_date DESC";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $patient_id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Treatment History | Smile Care</title>
 
 <style>
@@ -79,16 +112,6 @@ tr:hover{
 background:#f1fbfd;
 }
 
-.completed{
-color:green;
-font-weight:bold;
-}
-
-.ongoing{
-color:orange;
-font-weight:bold;
-}
-
 /* Button */
 
 .button{
@@ -109,6 +132,15 @@ transition:.3s;
 
 button:hover{
 background:#006064;
+}
+
+/* No treatment */
+
+.no-treatment{
+padding:30px;
+text-align:center;
+color:#777;
+font-size:18px;
 }
 
 /* Footer */
@@ -169,57 +201,57 @@ transform:translateY(0);
 
 <th>Date</th>
 
-<th>Status</th>
+<th>Description</th>
+
+<th>Cost</th>
 
 </tr>
 
-<tr>
+<?php
 
-<td>Dental Check-up</td>
+if ($result->num_rows > 0) {
 
-<td>Dr. Rahul Menon</td>
+    while ($row = $result->fetch_assoc()) {
 
-<td>10 July 2026</td>
+        echo "<tr>";
 
-<td class="completed">Completed</td>
+        echo "<td>" .
+             htmlspecialchars($row["treatment_name"]) .
+             "</td>";
 
-</tr>
+        echo "<td>" .
+             htmlspecialchars($row["dentist_name"]) .
+             "</td>";
 
-<tr>
+        echo "<td>" .
+             date("d F Y", strtotime($row["treatment_date"])) .
+             "</td>";
 
-<td>Teeth Cleaning</td>
+        echo "<td>" .
+             htmlspecialchars($row["description"] ?? "Not provided") .
+             "</td>";
 
-<td>Dr. Anjali Nair</td>
+        echo "<td>₹" .
+             htmlspecialchars($row["cost"]) .
+             "</td>";
 
-<td>25 July 2026</td>
+        echo "</tr>";
+    }
 
-<td class="completed">Completed</td>
+} else {
 
-</tr>
+    echo "<tr>";
 
-<tr>
+    echo "<td colspan='5' class='no-treatment'>";
 
-<td>Root Canal</td>
+    echo "No treatment records found.";
 
-<td>Dr. Meera Joseph</td>
+    echo "</td>";
 
-<td>15 August 2026</td>
+    echo "</tr>";
+}
 
-<td class="ongoing">Ongoing</td>
-
-</tr>
-
-<tr>
-
-<td>Braces Consultation</td>
-
-<td>Dr. Rahul Menon</td>
-
-<td>20 August 2026</td>
-
-<td class="completed">Completed</td>
-
-</tr>
+?>
 
 </table>
 
@@ -245,11 +277,19 @@ transform:translateY(0);
 
 function goBack(){
 
-window.location.href="patient_dashboard.html";
+window.location.href="patient_dashboard.php";
 
 }
 
 </script>
 
 </body>
+
 </html>
+
+<?php
+
+$stmt->close();
+$conn->close();
+
+?>
