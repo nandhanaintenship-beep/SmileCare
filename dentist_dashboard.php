@@ -1,8 +1,36 @@
+<?php
+session_start();
+include "config/db.php";
+
+if (!isset($_SESSION["dentist_id"])) {
+    header("Location: login.html");
+    exit();
+}
+
+$dentist_id = $_SESSION["dentist_id"];
+
+$sql = "SELECT * FROM dentists WHERE dentist_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $dentist_id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows != 1) {
+    echo "Dentist not found.";
+    exit();
+}
+
+$dentist = $result->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Dentist Dashboard | Smile Care</title>
 
 <style>
@@ -126,22 +154,7 @@ margin-bottom:10px;
 margin-bottom:10px;
 }
 
-/* Information Box */
-
-#details{
-width:90%;
-margin:20px auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px lightgray;
-min-height:120px;
-}
-
-#details h3{
-color:#0097a7;
-margin-bottom:10px;
-}
+/* Footer */
 
 footer{
 background:#0097a7;
@@ -174,76 +187,137 @@ transform:translateY(0);
 Smile Care Dentist Dashboard
 </header>
 
+<!-- Welcome -->
+
 <div class="welcome">
 
-<h2 id="greeting">Welcome Doctor 👨‍⚕️</h2>
+<h2 id="greeting">
+Welcome, <?php echo htmlspecialchars($dentist["name"]); ?> 👨‍⚕️
+</h2>
 
-<p>Manage appointments and patient treatment records.</p>
+<p>
+Manage appointments and patient treatment records.
+</p>
 
 </div>
 
+
+<!-- Dentist Profile -->
+
 <div class="profile">
 
-<img src="jpg 2.jpg" alt="Doctor" class="profile-img">
+<?php
+if ($dentist["name"] == "Dr. Anjali Nair") {
+    $doctorImage = "jpg 1.jpg";
+} elseif ($dentist["name"] == "Dr. Rahul Menon") {
+    $doctorImage = "jpg 2.jpg";
+} elseif ($dentist["name"] == "Dr. Meera Joseph") {
+    $doctorImage = "jpg 3.jpg";
+} else {
+    $doctorImage = "dentistimage.jpg";
+}
+?>
 
+<img src="<?php echo $doctorImage; ?>" alt="Doctor" class="profile-img">
 <div class="profile-details">
 
 <h3>Dentist Profile</h3>
 
-<p><b>Name:</b> Dr. Rahul Menon</p>
+<p>
+<b>Name:</b>
+<?php echo htmlspecialchars($dentist["name"]); ?>
+</p>
 
-<p><b>Qualification:</b> BDS, MDS</p>
+<p>
+<b>Specialization:</b>
+<?php echo htmlspecialchars($dentist["specialization"]); ?>
+</p>
 
-<p><b>Specialization:</b> General Dentistry</p>
+<p>
+<b>Phone:</b>
+<?php echo htmlspecialchars($dentist["phone"]); ?>
+</p>
 
-<p><b>Experience:</b> 8 Years</p>
-
-<p><b>Email:</b> rahul@smilecare.com</p>
+<p>
+<b>Email:</b>
+<?php echo htmlspecialchars($dentist["email"]); ?>
+</p>
 
 </div>
 
 </div>
+
+
+<!-- Dashboard Cards -->
 
 <div class="container">
 
 <div class="card" onclick="location.href='today_appointments.html'">
+
 <h2>📅</h2>
+
 <h3>Today's Appointments</h3>
+
 <p>View today's bookings</p>
+
 </div>
+
 
 <div class="card" onclick="location.href='update_treatment.html'">
+
 <h2>👨‍⚕️</h2>
-<h3>update records</h3>
-<p>update patient's records</p>
+
+<h3>Update Records</h3>
+
+<p>Update patient's records</p>
+
 </div>
+
 
 <div class="card" onclick="location.href='treatment_records.html'">
+
 <h2>🦷</h2>
+
 <h3>Treatment Records</h3>
+
 <p>View treatment details</p>
+
 </div>
+
 
 <div class="card" onclick="location.href='my_schedule.html'">
+
 <h2>⏰</h2>
+
 <h3>My Schedule</h3>
+
 <p>Check today's schedule</p>
+
 </div>
+
 
 <div class="card" onclick="location.href='patient_list.html'">
+
 <h2>👥</h2>
-<h3>patient list</h3>
+
+<h3>Patient List</h3>
+
 <p>View patient details</p>
+
 </div>
 
-<div class="card" onclick="location.href='logout.html'">
+
+<div class="card" onclick="location.href='logout.php'">
+
 <h2>🚪</h2>
+
 <h3>Logout</h3>
+
 <p>Exit dashboard</p>
-</div>
 
 </div>
 
+</div>
 
 
 <footer>
@@ -254,25 +328,34 @@ Smile Care Dentist Dashboard
 
 
 <script>
-let hour=new Date().getHours();
 
-if(hour<12){
+let hour = new Date().getHours();
 
-document.getElementById("greeting").innerHTML="Good Morning Doctor ☀️";
+let dentistName = <?php echo json_encode($dentist["name"]); ?>;
+
+if(hour < 12){
+
+document.getElementById("greeting").innerHTML =
+"Good Morning " + dentistName + " ☀️";
 
 }
-else if(hour<18){
 
-document.getElementById("greeting").innerHTML="Good Afternoon Doctor 🌤️";
+else if(hour < 18){
+
+document.getElementById("greeting").innerHTML =
+"Good Afternoon " + dentistName + " 🌤️";
 
 }
+
 else{
 
-document.getElementById("greeting").innerHTML="Good Evening Doctor 🌙";
+document.getElementById("greeting").innerHTML =
+"Good Evening " + dentistName + " 🌙";
 
 }
 
 </script>
 
 </body>
+
 </html>

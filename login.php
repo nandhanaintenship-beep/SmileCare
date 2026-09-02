@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $_SESSION["dentist_id"] = $dentist["dentist_id"];
 
-                header("Location: dentist_dashboard.html");
+                header("Location: dentist_dashboard.php");
                 exit();
 
             } else {
